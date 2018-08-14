@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+subcommand = ARGV[0]
+
+if subcommand == 'clone'
+   hash = ARGV[1].match(/[a-z0-9]+\z/)[0]
+   clone_directory = ARGV[2] || ''
+  `git clone git@gist.github.com:#{hash} #{clone_directory}`
+end
+
+
