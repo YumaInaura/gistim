@@ -1,5 +1,16 @@
 require "gistim/version"
+require 'gist'
 
 module Gistim
-  # Your code goes here...
+  class Gist
+    include ::Gist
+  end
+
+  class Clone
+
+  end
+
+  class Create
+
+  end
 end
