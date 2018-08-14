@@ -18,6 +18,23 @@ Or install it yourself as:
 
 ## Usage
 
+We can clone both specify hash or URL.
+
+```
+gistim clone 32b6d6ba379d4a65d22c06e3f8d284c0
+```
+
+```
+gistim clone https://gist.github.com/YumaInaura/32b6d6ba379d4a65d22c06e3f8d284c0
+```
+
+Even if you specify https URL gistim clone by git protocol. Because we can push to Gist repository by git protocol.
+
+We can specifiy directory name.
+
+```
+gistim clone https://gist.github.com/YumaInaura/32b6d6ba379d4a65d22c06e3f8d284c0 mac_replace_clipboard
+```
 
 ## Development
 
