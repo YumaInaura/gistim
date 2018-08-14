@@ -6,6 +6,16 @@ if subcommand == 'clone'
    hash = ARGV[1].match(/[a-z0-9]+\z/)[0]
    clone_directory = ARGV[2] || ''
   `git clone git@gist.github.com:#{hash} #{clone_directory}`
+elsif subcommand == 'create'
+  File.write('README.md', 'Wellcome to Gist! ( created by gistim )')
+  gist_url = `gist README.md`
+  gist_hash = gist_url.chomp.gsub(/\A.+\//, '')
+  clone_directory = ARGV[1] || gist_hash
+  `gistim clone #{gist_url} #{clone_directory}`
+  File.delete('README.md')
+  File.write("#{clone_directory}/.gist.url", gist_url)
+  File.write("#{clone_directory}/.gist.hash", gist_hash)
+else
+  raise "Unknown subcommand #{subcommand}"
 end
-
 
