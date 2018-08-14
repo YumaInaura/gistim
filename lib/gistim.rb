@@ -1,16 +1,17 @@
 require "gistim/version"
 require 'gist'
+require 'gistim/create'
 
 module Gistim
-  class Gist
-    include ::Gist
-  end
-
   class Clone
+    def initialize(alias_name: nil)
 
+    end
+
+    def clone
+
+    end
   end
 
-  class Create
-
-  end
 end
+
