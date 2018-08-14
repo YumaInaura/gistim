@@ -1,5 +1,8 @@
 # Gistim
 
+A wapper gem.
+Improved command of [defunkt/gist: Potentially the best command line gister.](https://github.com/defunkt/gist).
+
 ## Installation
 
 ```
