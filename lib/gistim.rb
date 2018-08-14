@@ -1,5 +1,17 @@
 require "gistim/version"
+require 'gist'
+require 'gistim/create'
 
 module Gistim
-  # Your code goes here...
+  class Clone
+    def initialize(alias_name: nil)
+
+    end
+
+    def clone
+
+    end
+  end
+
 end
+

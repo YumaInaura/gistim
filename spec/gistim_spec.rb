@@ -1,9 +1,11 @@
 RSpec.describe Gistim do
-  it "has a version number" do
-    expect(Gistim::VERSION).not_to be nil
+  describe 'module loading' do
+    subject { -> { described_class } }
+    it { is_expected.to_not raise_error }
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  describe 'sub class loading' do
+    subject { -> { Gistim::Create } }
+    it { is_expected.to_not raise_error }
   end
 end
