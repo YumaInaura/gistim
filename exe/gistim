@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'pry'
 require 'gistim'
 
 subcommand = ARGV[0]
@@ -9,6 +10,11 @@ if subcommand == 'clone'
 elsif subcommand == 'create'
   Gistim::Create.new(alias_name: ARGV[1]).create
 else
-  raise "Unknown subcommand #{subcommand}"
+  puts <<~TEXT
+    =====================================
+      $ gistim command delegated to $ gist command
+    =====================================
+  TEXT
+  puts `gist #{ARGV.join(' ')}`
 end
 
