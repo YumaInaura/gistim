@@ -1,5 +1,3 @@
-require 'pry'
-
 RSpec.describe Gistim::Create do
   describe "#clone" do
     subject { described_class.new.create }
