@@ -9,8 +9,10 @@ $ gem install gistim
 ## Ready
 
 ```
-gist login
+gist --login
 ```
+
+( Not `gistim --login` )
 
 And enable access to github by git protocol.
 
