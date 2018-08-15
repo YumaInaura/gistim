@@ -2,19 +2,17 @@
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'gistim'
+```
+$ gem install gistim
 ```
 
-And then execute:
+## Ready
 
-    $ bundle
+```
+gist login
+```
 
-Or install it yourself as:
-
-    $ gem install gistim
+And enable access to github by git protocol.
 
 ## Usage
 
