@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe Gistim do
   describe 'module loading' do
     subject { -> { described_class } }

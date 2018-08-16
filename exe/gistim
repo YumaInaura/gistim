@@ -7,7 +7,7 @@ subcommand = ARGV[0]
 if subcommand == 'clone'
   Gistim::Clone.clone(ARGV[1], clone_directory: ARGV[2])
 elsif subcommand == 'create'
-  create = Gistim::Create.new(alias_name: ARGV[1]).create
+  create = Gistim::Create.new(alias_name: ARGV[1]).implemente
 elsif ['list', 'history'].include? subcommand
   require 'json'
 
@@ -33,5 +33,4 @@ else
   TEXT
   puts `gist #{ARGV.join(' ')}`
 end
-
 

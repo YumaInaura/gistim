@@ -7,29 +7,33 @@ module Gistim
   
     attr_reader :alias_name, :gist_url
  
-    def create
+    def implement
       File.write(initialize_file_path, description)
 
-      create_empty
+      @gist_url = create_empty
       clone
 
       File.delete(initialize_file_path)
- 
-      # FIME: write good structured work flow and good test
-      File.write("#{clone_directory}/.gist.url", gist_url)
-      File.write("#{clone_directory}/.gist.hash", gist_hash)
 
       self
     end
 
     def gist_hash
-      gist_url.chomp.gsub(/\A.+\//, '')
+      gist_url.nil? ? nil : gist_url.chomp.gsub(/\A.+\//, '')
     end
 
     def description
       @description ||= 'Hello gist!'
     end
-  
+
+    def gist_hash_file_path
+      "#{clone_directory}/.gist_hash"
+    end
+
+    def gist_url_file_path
+      "#{clone_directory}/.gist_url"
+    end
+ 
     private
  
     def clone
@@ -38,7 +42,12 @@ module Gistim
 
     def create_empty
       # Execute `$ gist [some_file]` command and get gist url result
-      @gist_url ||= `gist #{initialize_file_path}`.chomp
+      gist_url = `gist #{initialize_file_path}`.chomp
+
+      File.write(gist_url_file_path, gist_url)
+      File.write(gist_hash_file_path, gist_hash)
+
+      gist_url
     end
 
     def initialize_file_path
