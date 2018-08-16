@@ -2,13 +2,27 @@
 
 require 'pry'
 require 'gistim'
-
 subcommand = ARGV[0]
 
 if subcommand == 'clone'
   Gistim::Clone.clone(ARGV[1], clone_directory: ARGV[2])
 elsif subcommand == 'create'
   Gistim::Create.new(alias_name: ARGV[1]).create
+elsif ['list', 'history'].include? subcommand
+  require 'json'
+
+  list = `gist --list`
+
+  history_file_path = "#{Gistim::Command.home}/gist-history.txt"
+  File.write(history_file_path, list)
+  results = File.read(history_file_path).split("\n").map do |line|
+    [
+      ["url", line.split(/\s/)[0]],
+      ["description", line.split(/\s/)[1..-1].join]
+     ].to_h
+  end
+  # FIXME: escape backslash
+  puts JSON.pretty_generate(results, quirks_mode: true)
 else
   puts <<~TEXT
     =====================================
@@ -17,4 +31,5 @@ else
   TEXT
   puts `gist #{ARGV.join(' ')}`
 end
+
 
