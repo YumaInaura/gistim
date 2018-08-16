@@ -1,13 +1,14 @@
 module Gistim
   class Create
-    def initialize(alias_name: nil)
+    def initialize(description: nil, alias_name: nil)
       @alias_name = alias_name
+      @description = description
     end
   
-    attr_reader :alias_name
+    attr_reader :alias_name, :gist_url
  
     def create
-      File.write(initialize_file_path, 'Wellcome to Gist! ( created by gistim )')
+      File.write(initialize_file_path, description)
 
       create_empty
       clone
@@ -15,14 +16,18 @@ module Gistim
       File.delete(initialize_file_path)
  
       # FIME: write good structured work flow and good test
-      # File.write("#{clone_directory}/.gist.url", gist_url)
-      # File.write("#{clone_directory}/.gist.hash", gist_hash)
+      File.write("#{clone_directory}/.gist.url", gist_url)
+      File.write("#{clone_directory}/.gist.hash", gist_hash)
 
       self
     end
 
     def gist_hash
       gist_url.chomp.gsub(/\A.+\//, '')
+    end
+
+    def description
+      @description ||= 'Hello gist!'
     end
   
     private
@@ -36,23 +41,12 @@ module Gistim
       @gist_url ||= `gist #{initialize_file_path}`.chomp
     end
 
-    def gist_url
-      @gist_url ||= create_empty
-    end
-
     def initialize_file_path
       '.gistim.tmp'
     end
 
     def clone_directory
       alias_name || gist_hash
-    end
-
-    # public
-    class << self
-      def implement
-        self.class.new.create
-      end
     end
   end
 end
