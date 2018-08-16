@@ -23,6 +23,8 @@ elsif ['list', 'history'].include? subcommand
   end
   # FIXME: escape backslash
   puts JSON.pretty_generate(results, quirks_mode: true)
+elsif ['open'].include? subcommand
+  `open $(echo https://gist.github.com/$(git config user.username)/$(git remote -v | head -n 1 | awk '{ print $2 }' | awk -F':' '{ print $2 }'))`
 else
   puts <<~TEXT
     =====================================
