@@ -55,7 +55,7 @@ module Gistim
     end
 
     def gist_directory
-      "#{Gistim::Command.home}#{gist_name}"
+      "#{Gistim::Command.home}/#{gist_name}"
     end
 
     def gist_name
