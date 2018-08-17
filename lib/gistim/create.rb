@@ -26,7 +26,7 @@ module Gistim
     end
 
     def description
-      @description ||= 'Hello gist!'
+      @description ||= '# Hello Gist!'
     end
 
     def hash_file_path
@@ -51,7 +51,7 @@ module Gistim
     end
 
     def initialize_file_path
-      '.gistim.tmp'
+      'GIST.md'
     end
 
     def directory
