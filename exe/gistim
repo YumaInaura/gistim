@@ -8,6 +8,8 @@ if subcommand == 'clone'
   Gistim::Clone.clone(ARGV[1], clone_directory: ARGV[2])
 elsif subcommand == 'create'
   create = Gistim::Create.new(alias_name: ARGV[1]).implement
+  puts "#{create.directory}"
+  `cd #{create.directory}` if ARGV.include? ["--cd"]
 elsif ['list', 'history'].include? subcommand
   require 'json'
 
