@@ -30,17 +30,17 @@ module Gistim
     end
 
     def gist_hash_file_path
-      "#{clone_directory}/.gist_hash"
+      "#{gist_directory}/.gist_hash"
     end
 
     def gist_url_file_path
-      "#{clone_directory}/.gist_url"
+      "#{gist_directory}/.gist_url"
     end
  
     private
  
     def clone
-      Clone.clone(gist_url, clone_directory: clone_directory)
+      Clone.clone(gist_url, clone_directory: gist_directory)
     end
 
     def create_empty
@@ -54,7 +54,11 @@ module Gistim
       '.gistim.tmp'
     end
 
-    def clone_directory
+    def gist_directory
+      "#{Gistim::Command.home}#{gist_name}"
+    end
+
+    def gist_name
       alias_name || gist_hash
     end
   end
