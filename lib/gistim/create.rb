@@ -13,6 +13,9 @@ module Gistim
       @gist_url = create_empty
       clone
 
+      File.write(gist_url_file_path, gist_url)
+      File.write(gist_hash_file_path, gist_hash)
+
       File.delete(initialize_file_path)
 
       self
@@ -43,9 +46,6 @@ module Gistim
     def create_empty
       # Execute `$ gist [some_file]` command and get gist url result
       gist_url = `gist #{initialize_file_path}`.chomp
-
-      File.write(gist_url_file_path, gist_url)
-      File.write(gist_hash_file_path, gist_hash)
 
       gist_url
     end
