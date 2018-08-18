@@ -36,7 +36,15 @@ module Gistim
     def url_file_path
       "#{directory}/.url"
     end
+
+    def directory
+      "#{Gistim::Command.home}/#{name}"
+    end
  
+    def name
+      alias_name || hash
+    end
+
     private
  
     def clone
@@ -52,14 +60,6 @@ module Gistim
 
     def initialize_file_path
       'GIST.md'
-    end
-
-    def directory
-      "#{Gistim::Command.home}/#{name}"
-    end
-
-    def name
-      alias_name || hash
     end
   end
 end
