@@ -4,6 +4,8 @@ require 'pry'
 require 'gistim'
 subcommand = ARGV[0]
 
+# TODO: Use Ruby OptionParser
+
 if ARGV.include? '--version'
   puts Gistim::VERSION
   exit
