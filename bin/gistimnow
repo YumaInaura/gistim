@@ -1,0 +1,23 @@
+#!/bin/bash -eu
+
+readonly gistim_home=${GISTIM_HOME:-$HOME/gistim}
+
+mkdir -p "$gistim_home"
+
+for arg in "$@"; do
+  [ "$arg" = '--list' ] && find "$gistim_home" -type d -maxdepth 1 && exit
+done
+
+pushd "$gistim_home"
+
+permitted_options=''
+for arg in "$@"; do
+  [[ "$arg" =~ ^[^-].+$ ]] && $permitted_options="$permitted_options $arg"
+done
+
+gistim create $permitted_options
+
+return_to_current_directory=true
+
+[ "$return_to_current_directory" ] && pushd
+
