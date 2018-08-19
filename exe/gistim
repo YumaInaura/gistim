@@ -4,12 +4,19 @@ require 'pry'
 require 'gistim'
 subcommand = ARGV[0]
 
+if ARGV.include? '--version'
+  puts Gistim::VERSION
+  exit
+end
+
 if subcommand == 'help'
   puts <<~HELP
     $ gistim create some_word
     
     Crete new gist and git clone
   HELP
+elsif subcommand == 'clone'
+  Gistim::Clone.clone(ARGV[1], clone_directory: ARGV[2])
 elsif subcommand == 'clone'
   Gistim::Clone.clone(ARGV[1], clone_directory: ARGV[2])
 elsif subcommand == 'create'
