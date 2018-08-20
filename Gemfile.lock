@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    gistim (0.2.1)
+    gistim (0.2.2)
+      gist (~> 5)
 
 GEM
   remote: https://rubygems.org/
@@ -33,7 +34,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
-  gist (~> 5)
   gistim!
   pry (~> 0)
   rake (~> 10.0)
