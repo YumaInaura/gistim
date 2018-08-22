@@ -22,4 +22,3 @@ gistim create $permitted_options
 return_to_current_directory=true
 
 [ "$return_to_current_directory" ] && pushd
-
