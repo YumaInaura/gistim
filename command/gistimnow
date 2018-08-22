@@ -8,7 +8,7 @@ mkdir -p "$gistim_home"
 for arg in "$@"; do
   [ "$arg" = '--list' ] && find "$gistim_home" -type d -maxdepth 1 && exit
   [ "$arg" = '--path' ] && echo "$gistim_home" && exit
-  [ "$arg" = '--version' ] && echo gistimnnow "$version"
+  [ "$arg" = '--version' ] && echo gistimnnow "$version" && exit
 done
 
 pushd "$gistim_home"
