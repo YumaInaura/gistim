@@ -31,7 +31,7 @@ popd
 # Link command to PATH
 readonly command_path=/usr/local/bin/"$command_name"
 rm -f "$command_path"
-ln -s "$command_home"/bin/"$command_name" "$command_path"
+ln -s "$command_home"/command/"$command_name" "$command_path"
 
 echo "installed"
 
