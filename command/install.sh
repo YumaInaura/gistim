@@ -13,14 +13,14 @@ function remove_tmp {
 }
 trap remove_tmp EXIT
 
-readonly download_header=$(curl --head "$download_tmp_dir"/"$compress_file_name" "$compress_file_url"/"$compress_file_name"?$(date +%s))
-readonly download_ok=$(echo "$download_header" | grep -e 'HTTP .+ 200 OK')
-[[ -z "$download_ok" ]] && echo "Download file not found" && echo "$compress_file_url" && exit 1
+readonly download_header=$(curl --head "$compress_file_url"?$(date +%s))
+readonly download_ok=$(echo "$download_header" | grep 'OK')
+[[ -z "$download_ok" ]] && echo "Download file not found" && echo "$compress_file_url" && echo "$download_header" && exit 1
 
 # Create home dir
 mkdir -p "$command_home"
 mkdir -p "$download_tmp_dir"
-curl -o "$download_tmp_dir"/"$compress_file_name" "$compress_file_url"/"$compress_file_name"?$(date +%s)
+curl -o "$download_tmp_dir"/"$compress_file_name" "$compress_file_url"?$(date +%s)
 
 # Refresh libraries
 cp "$download_tmp_dir"/"$compress_file_name" "$HOME"/"$command_name"/
