@@ -1,5 +1,6 @@
 #!/bin/bash -eu
 
+readonly version=1.0.0
 readonly gistim_home=${GISTIM_HOME:-$HOME/gistim}
 
 mkdir -p "$gistim_home"
@@ -7,7 +8,7 @@ mkdir -p "$gistim_home"
 for arg in "$@"; do
   [ "$arg" = '--list' ] && find "$gistim_home" -type d -maxdepth 1 && exit
   [ "$arg" = '--path' ] && echo "$gistim_home" && exit
-  [ "$arg" = '--version' ] && gistim --version && exit
+  [ "$arg" = '--version' ] && echo gistimnnow "$version"
 done
 
 pushd "$gistim_home"
