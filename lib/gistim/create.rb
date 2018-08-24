@@ -13,9 +13,6 @@ module Gistim
       @url = create_empty
       clone
 
-      File.write(url_file_path, url)
-      File.write(hash_file_path, hash)
-
       File.delete(initialize_file_path)
 
       self
@@ -27,14 +24,6 @@ module Gistim
 
     def description
       @description ||= '# Hello Gist!'
-    end
-
-    def hash_file_path
-      "#{directory}/.hash"
-    end
-
-    def url_file_path
-      "#{directory}/.url"
     end
 
     def directory
