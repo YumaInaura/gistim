@@ -11,16 +11,17 @@ for arg in "$@"; do
   [ "$arg" = '--version' ] && echo gistimnnow "$version" && exit
 done
 
-pushd "$gistim_home"
-
 permitted_options=''
-for arg in "$@"; do
-  [[ "$arg" =~ ^[^-].+$ ]] && $permitted_options="$permitted_options $arg"
-done
+pushd "$gistim_home" >/dev/null
+  for arg in "$@"; do
+    [[ "$arg" =~ ^[^-].+$ ]] && $permitted_options="$permitted_options $arg"
+  done
+  
+  readonly created=$(gistim create $permitted_options)
+  readonly gist_local_path=$(echo "$created" | tail -n 1)
 
-gistim create $permitted_options
+  return_to_current_directory=true
+popd > /dev/null
 
-return_to_current_directory=true
-
-[ "$return_to_current_directory" ] && pushd
+echo "$gist_local_path"
 
